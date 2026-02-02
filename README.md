@@ -1,9 +1,11 @@
 # DotNetWeb_Docker_K8s
 Dotnet Web application along with unit test case + Dockerfile + deployment files
 
+# Steps to create defailt Dotnet Web application
 Dotnet web with Dockerfile & K8s files
 
--------to build a sample DotNet project & Dockerfile with testing-----------
+Step1:
+-------to build a sample DotNet project & Dockerfile with testing run below commands from cmd-----------
 dotnet new sln -n DockerDotNetDemo
 dotnet new webapi -n DockerDotNetDemo.Api
 dotnet new xunit -n DockerDotNetDemo.Tests
@@ -11,10 +13,7 @@ dotnet sln DockerDotNetDemo.sln add DockerDotNetDemo.Api
 dotnet sln DockerDotNetDemo.sln add DockerDotNetDemo.Tests
 dotnet add DockerDotNetDemo.Tests reference DockerDotNetDemo.Api
 
-dotnet restore
-dotnet build --no-restore --configuration release
-dotnet test --configuration release 
-
+Step2:
 -----add a 'DockerDotNetDemo.Tests.cs' into root folder ------
 using Xunit;
 namespace DockerDotNetDemo.Tests
@@ -28,8 +27,6 @@ namespace DockerDotNetDemo.Tests
         }
     }
 }
-
-
 
 -----add a Dockerfile into root folder------
 # ----------------------------
@@ -78,18 +75,28 @@ app.MapGet("/", () => "DockerDotNetDemo API is running");
 app.MapGet("/health", () => Results.Ok("Healthy"));
 app.Run();
 
+step3:
+---------- run below commands from CMD under root floder ---------------
+dotnet restore
+dotnet build --no-restore --configuration release
+dotnet test --configuration release
 
+step4:
 --------o/p from local CMD----------
 http://localhost:5000
 http://localhost:5000/   -- (optional)
 http://localhost:5000/health -- (optional)
 http://localhost:5000/swagger
 
+step5:
 ---------open/enable Docker Desktop & go to path/folder then run below commands from wsl--------
 docker build -t dotnet-docker-demo .
+docker images (to check the image info)
 docker run -d -p 5000:5000 --name dotnet-demo dotnet-docker-demo
+docker ps -a (to check the container status)
 docker logs dotnet-demo
 curl http://localhost:5000/swagger
+copy: 'http://localhost:5000/swagger' and past into any web browser to see the o/p or application up and running
 
 ----------Docker container lifecycle: ------------
 Created → Running → Exited → Deleted
@@ -105,6 +112,7 @@ docker run -d -p 8080:8080 --name dotnet-demo dotnet-docker-demo
 docker logs dotnet-demo
 Test from WSL -- curl http://localhost:8080/swagger  (If this works → browser will also work)
 
+step6:
 Create these below files in root folder
 ------namespace.yml-----------
 apiVersion: v1
