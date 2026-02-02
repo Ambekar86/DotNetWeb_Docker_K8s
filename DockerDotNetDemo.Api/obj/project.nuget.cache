@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "XVbUGnmK9K8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ThukaramRao\\docker_practice\\Doc_dotnet\\DockerDotNetDemo.Api\\DockerDotNetDemo.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.7\\microsoft.aspnetcore.openapi.8.0.7.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.7\\microsoft.netcore.app.ref.8.0.7.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.7\\microsoft.windowsdesktop.app.ref.8.0.7.nupkg.sha512",
+    "C:\\Users\\ThukaramRao\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.7\\microsoft.netcore.app.host.win-x64.8.0.7.nupkg.sha512"
+  ],
+  "logs": []
+}
