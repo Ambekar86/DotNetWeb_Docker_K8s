@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-demo
+  namespace: dotnet-demo-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dotnet-demo
+  template:
+    metadata:
+      labels:
+        app: dotnet-demo
+    spec:
+      containers:
+        - name: dotnet-demo
+          image: thukaram07/dotnetweb-docker:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:8080
+          readinessProbe:
+            httpGet:
+              path: /swagger/index.html
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /swagger/index.html
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+
