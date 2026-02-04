@@ -132,13 +132,25 @@ spec:
     spec:
       containers:
         - name: dotnet-demo
-          image: dotnet-docker-demo:latest
+          image: thukaram07/dotnetweb-docker:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           env:
             - name: ASPNETCORE_URLS
-              value: http://0.0.0.0:8080
+              value: http://+:8080
+          readinessProbe:
+            httpGet:
+              path: /swagger/index.html
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /swagger/index.html
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 20
           resources:
             requests:
               cpu: "100m"
@@ -157,16 +169,57 @@ metadata:
   name: dotnet-demo-svc
   namespace: dotnet-demo-ns
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: dotnet-demo
   ports:
-    - port: 80
+    - name: http
+      port: 80
       targetPort: 8080
-      nodePort: 30080
+      
 
-note: http://<NODE-IP>:30080/swagger
+Debugging:
+----------------
 
+run/try this below commands:
+minikube tunnel (this should not be stop/close)
+
+C:\Users\ThukaramRao>kubectl get pods -n dotnet-demo-ns
+NAME                           READY   STATUS    RESTARTS   AGE
+dotnet-demo-66788cd997-g6888   1/1     Running   0          17m
+
+C:\Users\ThukaramRao>kubectl get svc -n dotnet-demo-ns
+NAME              TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+dotnet-demo-svc   LoadBalancer   10.99.170.30   127.0.0.1     80:32751/TCP   38m
+
+C:\Users\ThukaramRao>minikube ip
+192.168.49.2
+
+C:\Users\ThukaramRao>kubectl port-forward svc/dotnet-demo-svc 8081:80 -n dotnet-demo-ns
+Forwarding from 127.0.0.1:8081 -> 8080
+Forwarding from [::1]:8081 -> 8080
+
+C:\Users\ThukaramRao>kubectl get endpoints dotnet-demo-svc -n dotnet-demo-ns
+NAME              ENDPOINTS           AGE
+dotnet-demo-svc   10.244.0.113:8080   56m
+
+C:\Users\ThukaramRao>kubectl logs deployment/dotnet-demo -n dotnet-demo-ns
+warn: Microsoft.AspNetCore.Hosting.Diagnostics[15]
+      Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://+:8080'.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://[::]:8080
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /app
+
+      
+http://localhost:8081/swagger -- (final o/p from web browser)
+
+Practices this below:
+------------------------
 from Minikube: minikube service dotnet-demo-svc -n dotnet-demo-ns
 verify deploy -- kubectl get all -n dotnet-demo-ns
 check pod logs -- kubectl logs -n dotnet-demo-ns deploy/dotnet-demo
