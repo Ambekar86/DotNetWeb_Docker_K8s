@@ -1,0 +1,27 @@
+inputSet:
+  name: myinputset
+  identifier: myinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Deploy_DockerDotnet
+    stages:
+      - stage:
+          identifier: Deploy_QA
+          type: Deployment
+          spec:
+            service:
+              serviceInputs:
+                serviceDefinition:
+                  type: Kubernetes
+                  spec:
+                    artifacts:
+                      primary:
+                        primaryArtifactRef: mydocker
+    variables:
+      - name: ImageName
+        type: String
+        value: thukaram07/dotnetweb-docker
+      - name: ImageTag
+        type: String
+        value: latest
