@@ -17,6 +17,20 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: ShellScript
+                  name: DevDeploy
+                  identifier: DevDeploy
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo 'Deploying in Dev Env'
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
                   name: Rollout Deployment
                   identifier: rolloutDeployment
                   type: K8sRollingDeploy
@@ -68,6 +82,20 @@ pipeline:
               - identifier: QAInfra
           execution:
             steps:
+              - step:
+                  type: ShellScript
+                  name: QA_Deploy
+                  identifier: QA_Deploy
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo 'Deploy to QA Env'
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
               - step:
                   name: Rollout Deployment
                   identifier: rolloutDeployment
