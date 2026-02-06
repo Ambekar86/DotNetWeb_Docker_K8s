@@ -34,12 +34,16 @@ pipeline:
                     pruningEnabled: false
           environments:
             metadata:
-              parallel: false
+              parallel: true
             values:
               - environmentRef: DEV
                 deployToAll: false
                 infrastructureDefinitions:
                   - identifier: GCP_Infra
+              - environmentRef: Deploy_QA
+                gitBranch: main
+                deployToAll: true
+                infrastructureDefinitions: <+input>
         tags: {}
         failureStrategies:
           - onFailure:
