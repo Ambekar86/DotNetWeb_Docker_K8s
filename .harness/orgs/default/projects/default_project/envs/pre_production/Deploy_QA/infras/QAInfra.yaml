@@ -8,6 +8,6 @@ infrastructureDefinition:
   type: KubernetesDirect
   spec:
     connectorRef: kubernetesdelegateagent
-    namespace: dotnet-demo-ns
+    namespace: harness-delegate-ng
     releaseName: dotnet-demo
   allowSimultaneousDeployments: false
