@@ -32,18 +32,11 @@ pipeline:
                   timeout: 10m
                   spec:
                     pruningEnabled: false
-          environments:
-            metadata:
-              parallel: true
-            values:
-              - environmentRef: DEV
-                deployToAll: false
-                infrastructureDefinitions:
-                  - identifier: GCP_Infra
-              - environmentRef: Deploy_QA
-                gitBranch: main
-                deployToAll: true
-                infrastructureDefinitions: <+input>
+          environment:
+            environmentRef: DEV
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: GCP_Infra
         tags: {}
         failureStrategies:
           - onFailure:
