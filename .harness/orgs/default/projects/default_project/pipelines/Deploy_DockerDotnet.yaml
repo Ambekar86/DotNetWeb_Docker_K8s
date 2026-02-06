@@ -149,3 +149,14 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+  variables:
+    - name: ImageName
+      type: String
+      description: DotNetWeb
+      required: true
+      value: <+input>
+    - name: ImageTag
+      type: String
+      description: DotNetWeb
+      required: true
+      value: <+input>
