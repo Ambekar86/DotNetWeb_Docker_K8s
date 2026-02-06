@@ -1,0 +1,13 @@
+infrastructureDefinition:
+  name: QA-Infra
+  identifier: QAInfra
+  orgIdentifier: default
+  projectIdentifier: default_project
+  environmentRef: Deploy_QA
+  deploymentType: Kubernetes
+  type: KubernetesDirect
+  spec:
+    connectorRef: kubernetesdelegateagent
+    namespace: dotnet-demo-ns
+    releaseName: release-<+INFRA_KEY_SHORT_ID>
+  allowSimultaneousDeployments: false
