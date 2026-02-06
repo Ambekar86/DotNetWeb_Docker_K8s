@@ -134,9 +134,6 @@ pipeline:
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
-                    commandFlags:
-                      - commandType: Apply
-                        flag: <+input>
             rollbackSteps:
               - step:
                   name: Rollback Rollout Deployment
