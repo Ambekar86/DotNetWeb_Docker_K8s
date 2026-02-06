@@ -28,7 +28,7 @@ pipeline:
                       userGroups:
                         - account._account_all_users
                       minimumCount: 1
-                      disallowPipelineExecutor: true
+                      disallowPipelineExecutor: false
                     approverInputs: []
                   timeout: 1d
               - step:
