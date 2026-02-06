@@ -17,21 +17,6 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: HarnessApproval
-                  name: Dev_Approval
-                  identifier: Dev_Approval
-                  spec:
-                    approvalMessage: Please review the following information and approve the pipeline progression
-                    includePipelineExecutionHistory: true
-                    isAutoRejectEnabled: false
-                    approvers:
-                      userGroups:
-                        - account._account_all_users
-                      minimumCount: 1
-                      disallowPipelineExecutor: false
-                    approverInputs: []
-                  timeout: 1d
-              - step:
                   name: Rollout Deployment
                   identifier: rolloutDeployment
                   type: K8sRollingDeploy
@@ -83,21 +68,6 @@ pipeline:
               - identifier: QAInfra
           execution:
             steps:
-              - step:
-                  type: HarnessApproval
-                  name: QA_Approval
-                  identifier: QA_Approval
-                  spec:
-                    approvalMessage: Please review the following information and approve the pipeline progression
-                    includePipelineExecutionHistory: true
-                    isAutoRejectEnabled: false
-                    approvers:
-                      userGroups:
-                        - account._account_all_users
-                      minimumCount: 1
-                      disallowPipelineExecutor: false
-                    approverInputs: []
-                  timeout: 1d
               - step:
                   name: Rollout Deployment
                   identifier: rolloutDeployment
