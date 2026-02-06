@@ -9,5 +9,5 @@ infrastructureDefinition:
   spec:
     connectorRef: kubernetesdelegateagent
     namespace: dotnet-demo-ns
-    releaseName: release-<+INFRA_KEY_SHORT_ID>
+    releaseName: dotnet-demo
   allowSimultaneousDeployments: false
