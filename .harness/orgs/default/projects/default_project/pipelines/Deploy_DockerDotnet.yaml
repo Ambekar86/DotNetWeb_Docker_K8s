@@ -117,7 +117,7 @@ pipeline:
                   identifier: QA_Approval
                   spec:
                     approvalMessage: Please review the following information and approve the pipeline progression
-                    includePipelineExecutionHistory: false
+                    includePipelineExecutionHistory: true
                     isAutoRejectEnabled: false
                     approvers:
                       userGroups:
