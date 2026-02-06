@@ -14,11 +14,6 @@ pipeline:
           deploymentType: Kubernetes
           service:
             serviceRef: MyDocker_Container
-          environment:
-            environmentRef: DEV
-            deployToAll: false
-            infrastructureDefinitions:
-              - identifier: GCP_Infra
           execution:
             steps:
               - step:
@@ -37,6 +32,14 @@ pipeline:
                   timeout: 10m
                   spec:
                     pruningEnabled: false
+          environments:
+            metadata:
+              parallel: false
+            values:
+              - environmentRef: DEV
+                deployToAll: false
+                infrastructureDefinitions:
+                  - identifier: GCP_Infra
         tags: {}
         failureStrategies:
           - onFailure:
