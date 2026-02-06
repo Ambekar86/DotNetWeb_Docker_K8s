@@ -1,0 +1,8 @@
+environment:
+  name: Deploy_QA
+  identifier: Deploy_QA
+  description: ""
+  tags: {}
+  type: PreProduction
+  orgIdentifier: default
+  projectIdentifier: default_project
