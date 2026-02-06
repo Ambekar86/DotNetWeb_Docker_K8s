@@ -136,10 +136,7 @@ pipeline:
                     pruningEnabled: false
                     commandFlags:
                       - commandType: Apply
-                        flag: |+
-                          if <+execution.steps.QA_Approval.spec.approvalMessage> == Approve &&
-                          <+execution.steps.QA_Approval.when> != NULL
-
+                        flag: <+input>
             rollbackSteps:
               - step:
                   name: Rollback Rollout Deployment
